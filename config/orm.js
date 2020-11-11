@@ -31,26 +31,16 @@ var orm = {
        cb(result)
      })
    },
-   insertOne: function(table, cols, vals, cb) {
-     var query = "INSERT INTO " + table;
-     queryString += " (";
-     queryString += cols.toString();
-     queryString += ") ";
-     queryString += "VALUES (";
-     queryString += printQuestionMarks(vals.length);
-     queryString += ") ";
- 
-     console.log(queryString);
- 
-     connection.query(queryString, vals, function(err, result) {
-       if (err) {
-         throw err;
-       }
- 
-       cb(result);
-     });
+   insertOne: function(vals, cb) {
+    console.log(vals) 
+    var query = `INSERT INTO burgers (burgerName, devoured) VALUES ("${vals}", 0);`
+    connection.query(query, function(err, res) {
+      if (err) throw err;
+      cb(res);
+    });
    },
-   updateOne: function(table, objColVals, condition, cb) {
+
+    updateOne: function(table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
 
     queryString += " SET ";

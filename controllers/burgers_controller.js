@@ -14,8 +14,12 @@ router.get("/", function(req, res) {
 });
 
 router.post("/api/burgers", function(req, res) {
-    burger.insertOne(["burgerName", "devoured"], [req.body.burgerName, req.body.devoured], function(result) {
-        res.json({ id: result.insertId });
+    burger.insertOne(req.body.burgerName, function(result) {
+        // if (err) throw err;
+        console.log("Got here CONTROLLER 2")
+        res.json(result);
+        console.log(result)
+        console.log("Got here CONTROLLER 3")
     });
 });
 
