@@ -1,14 +1,15 @@
 var mysql = require("mysql");
-var password = require("../pw.js");
 
 if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
+    var password = require("../pw.js");
     connection = mysql.createConnection({
         host: 'localhost',
+        port: 3306,
         user: 'root',
-        password: 'hacktheplanet',
-        database: 'todoagain_db'
+        password: password,
+        database: 'burgers_db'
     })
 }
 
